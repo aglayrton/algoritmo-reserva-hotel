@@ -11,6 +11,8 @@ public class Teste {
 			int j = i;
 		}
 		
+		System.out.println("Hello");
+		
 	}
 
 }
