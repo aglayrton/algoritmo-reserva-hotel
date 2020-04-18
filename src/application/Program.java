@@ -9,23 +9,20 @@ import model.entities.Reservation;
 
 public class Program{
 	
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) {
 		
-		Scanner sc = new Scanner(System.in);
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
-		System.out.print("Número da reserva: ");
-		int number = sc.nextInt();
-		
-		System.out.print("Check-in entre com a data (dia/mês/ano): ");
-		Date checkIn = sdf.parse(sc.next());	//converte do tipo texto
-		
-		System.out.print("Check-Out entre com a data (dia/mês/ano): ");
-		Date checkOut = sdf.parse(sc.next());
-		
-		if(!checkOut.after(checkIn)) {
-			System.out.println("Erro na reserva (A entrada de Check-in não pode ser depois do que a saída)");
-		}else {
+		try {
+			Scanner sc = new Scanner(System.in);
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			System.out.print("Número da reserva: ");
+			int number = sc.nextInt();
+			System.out.print("Check-in entre com a data (dia/mês/ano): ");
+			Date checkIn = sdf.parse(sc.next());	//converte do tipo texto
+			System.out.print("Check-Out entre com a data (dia/mês/ano): ");
+			Date checkOut = sdf.parse(sc.next());
+			
+			
 			Reservation reservation = new Reservation(number, checkIn, checkOut);
 			System.out.println(reservation);
 			
@@ -37,15 +34,14 @@ public class Program{
 			checkOut = sdf.parse(sc.next());
 			
 		
-			String error = reservation.updateDate(checkOut, checkIn);//retorna string
-			
-			if(error != null) {
-				System.out.println("Erro na reserva: "+error);
-			}else {
-				System.out.println("Reserva: "+ reservation);
-			}
-	
-			
+			reservation.updateDate(checkOut, checkIn);//retorna string
+			System.out.println("Reserva: "+ reservation);
+		}
+		catch(ParseException e) {
+			System.out.println("Formato de data Inválido");
+		}
+		catch(IllegalArgumentException e) {
+			System.out.println("Erro na reserva: "+e.getMessage());
 		}
 	}
 
