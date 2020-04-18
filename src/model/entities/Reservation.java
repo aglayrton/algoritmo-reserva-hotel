@@ -13,6 +13,9 @@ public class Reservation {
 	private Date checkOut;
 	
 	public Reservation(Integer roomNumber, Date checkIn, Date checkOut) {
+		if(!checkOut.after(checkIn)) {
+			throw new DomainException("A entrada de Check-in não pode ser depois do que a saída");
+		}
 		this.roomNumber = roomNumber;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
@@ -43,7 +46,7 @@ public class Reservation {
 		//comando acima converte me dias
 	}
 	
-	public void updateDate(Date checkOut, Date checkIn) throws DomainException {
+	public void updateDate(Date checkOut, Date checkIn) {
 		
 		Date agora = new Date();
 		//se a data de checkIn ou checkOut for antes de agora
