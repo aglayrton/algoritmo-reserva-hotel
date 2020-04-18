@@ -43,6 +43,9 @@ public class Program{
 		}
 		catch(DomainException e) {
 			System.out.println("Erro na reserva: "+e.getMessage());
+		}catch(RuntimeException e) {
+			//qualquer exceção inesperada por exemplo texto no lugar de números
+			System.out.println("Erro inesperado");
 		}
 		sc.close();
 	}
