@@ -41,22 +41,18 @@ public class Reservation {
 		//comando acima converte me dias
 	}
 	
-	public String updateDate(Date checkOut, Date checkIn) {
+	public void updateDate(Date checkOut, Date checkIn) {
 		
 		Date agora = new Date();
 		//se a data de checkIn ou checkOut for antes de agora
 		if(checkIn.before(agora) || checkOut.before(agora)) {
-			return "As datas de reserva para atualização devem ser datas futuras";
+			throw  new IllegalArgumentException("As datas de reserva para atualização devem ser datas futuras"); //usando quando os argumentos da exceção são inválidos
 		}
 		if(!checkOut.after(checkIn)) {
-			return "A entrada de Check-in não pode ser depois do que a saída";
+			throw new IllegalArgumentException("A entrada de Check-in não pode ser depois do que a saída");
 		}
-		
-		
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
-		
-		return null;//se retornar nullo é porque não deu erro
 	}
 	
 	public String dias() {
