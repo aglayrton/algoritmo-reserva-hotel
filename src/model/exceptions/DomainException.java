@@ -1,6 +1,6 @@
 package model.exceptions;
 
-public class DomainException extends Exception{
+public class DomainException extends RuntimeException{
 
 	/**
 	 * Classe personalizada para exceção
