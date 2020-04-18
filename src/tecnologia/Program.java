@@ -1,10 +1,7 @@
 package tecnologia;
 
-import java.util.Scanner;
+public class Program{
 
-public class Teste {
-
-	
 	public static void main(String[] args) {
 		
 		
