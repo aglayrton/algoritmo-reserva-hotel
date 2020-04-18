@@ -12,10 +12,10 @@ public class Program{
 	
 	public static void main(String[] args) {
 		
+		Scanner sc = new Scanner(System.in);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
 		try {
-			Scanner sc = new Scanner(System.in);
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			System.out.print("Número da reserva: ");
 			int number = sc.nextInt();
 			System.out.print("Check-in entre com a data (dia/mês/ano): ");
@@ -44,7 +44,7 @@ public class Program{
 		catch(DomainException e) {
 			System.out.println("Erro na reserva: "+e.getMessage());
 		}
-		
+		sc.close();
 	}
 
 }
