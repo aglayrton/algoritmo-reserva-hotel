@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import model.exceptions.DomainException;
+
 public class Reservation {
 	
 	private Integer roomNumber;
@@ -41,15 +43,15 @@ public class Reservation {
 		//comando acima converte me dias
 	}
 	
-	public void updateDate(Date checkOut, Date checkIn) {
+	public void updateDate(Date checkOut, Date checkIn) throws DomainException {
 		
 		Date agora = new Date();
 		//se a data de checkIn ou checkOut for antes de agora
 		if(checkIn.before(agora) || checkOut.before(agora)) {
-			throw  new IllegalArgumentException("As datas de reserva para atualização devem ser datas futuras"); //usando quando os argumentos da exceção são inválidos
+			throw  new DomainException("As datas de reserva para atualização devem ser datas futuras"); //usando quando os argumentos da exceção são inválidos
 		}
 		if(!checkOut.after(checkIn)) {
-			throw new IllegalArgumentException("A entrada de Check-in não pode ser depois do que a saída");
+			throw new DomainException("A entrada de Check-in não pode ser depois do que a saída");
 		}
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
